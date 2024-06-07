@@ -31,4 +31,10 @@ app.get('/', (req, res) => {
     res.send("Welcome to Hirademy | Server is running fine")
 })
 
+// Routes
+import assistantRoutes from "./routes/assistant.routes.js";
+
+// Routes declaration
+app.use("/api/v1/assistant", assistantRoutes)
+
 export { app }
