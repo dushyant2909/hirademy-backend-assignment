@@ -1,4 +1,5 @@
 import { Assistant } from "../models/assistant.model.js";
+import mongoose from "mongoose";
 
 const createAssistant = async (req, res) => {
     try {
@@ -48,7 +49,18 @@ const assistantDetails = async (req, res) => {
         if (!id)
             return res.status(400).json({ message: 'Id is required' });
 
+        // Check if the entered ID is a valid MongoDB ObjectId
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: 'Invalid Id format' });
+        }
+
         const assistantDetails = await Assistant.findById(id)
+
+        if (!assistantDetails)
+            return res.status(401).json({
+                success: false,
+                message: "No assistant found with this id"
+            })
 
         return res.status(200).json({
             success: "true",
@@ -67,7 +79,46 @@ const assistantDetails = async (req, res) => {
     }
 }
 
+const deleteAssistant = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        if (!id)
+            return res.status(400).json({ message: 'Id is required' });
+
+        // Check if the entered ID is a valid MongoDB ObjectId
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: 'Invalid Id format' });
+        }
+
+        const deletedAssistant = await Assistant.findByIdAndDelete(id)
+
+        if (!deletedAssistant) {
+            return res.status(404).json({
+                success: false,
+                message: "No assistant found with this id"
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Assistant deleted successfully"
+        })
+
+    } catch (error) {
+        console.log("Erron in deleting assistant::", error);
+        return res.status(500).json(
+            {
+                success: false,
+                message: "Something went wrong while deleting assistant details",
+                error: error.message
+            }
+        )
+    }
+}
+
 export {
     createAssistant,
-    assistantDetails
+    assistantDetails,
+    deleteAssistant
 }
