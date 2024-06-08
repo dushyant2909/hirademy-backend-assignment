@@ -41,4 +41,33 @@ const createAssistant = async (req, res) => {
     }
 }
 
-export { createAssistant }
+const assistantDetails = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        if (!id)
+            return res.status(400).json({ message: 'Id is required' });
+
+        const assistantDetails = await Assistant.findById(id)
+
+        return res.status(200).json({
+            success: "true",
+            message: "Assistant details fetched successfully",
+            data: assistantDetails
+        });
+    } catch (error) {
+        console.log("Erron in getting assistant details::", error);
+        return res.status(500).json(
+            {
+                success: false,
+                message: "Something went wrong while getting assistant details",
+                error: error.message
+            }
+        )
+    }
+}
+
+export {
+    createAssistant,
+    assistantDetails
+}
