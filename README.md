@@ -54,7 +54,7 @@ A Postman collection is provided in the file `hirademy.postman_collection.json` 
 
 1. Open Postman.
 2. Click on `Import` in the top-left corner.
-3. Select `Choose Files` and import the `hirademy.postman_collection.json` file.
+3. Select `Choose Files` and import the `Hirademy-backend-apis.postman_collection.json` file.
 4. The collection should now appear in your Postman workspace.
 5. You can now run the requests provided in the collection to interact with the API.
 
