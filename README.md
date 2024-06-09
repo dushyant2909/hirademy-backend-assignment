@@ -48,7 +48,7 @@ cd hirademy-backend-assignment
 
 ### Postman Collection
 
-A Postman collection is provided in the file `hirademy.postman_collection.json` for easier testing of the API endpoints.
+A Postman collection is provided in the file `Hirademy-backend-apis.postman_collection.json` for easier testing of the API endpoints.
 
 ### Instructions for Using the Postman Collection
 
