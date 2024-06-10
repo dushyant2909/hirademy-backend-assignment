@@ -36,7 +36,7 @@ cd hirademy-backend-assignment
 
    ```plaintext
    PORT=3000
-   MONGODB_URL=mongodb://localhost:27017
+   MONGODB_URL=mongodb+srv://dushyantb2003:<password>@cluster0.nidugph.mongodb.net/
    CORS_ORIGIN = *
    ```
 
